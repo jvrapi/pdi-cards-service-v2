@@ -55,6 +55,7 @@ export class PrismaCardsMapper {
 
   static toPrisma(card: Card, setId: string) {
     return {
+      id: card.id,
       colors: PrismaColorsMapper.toPrisma(card.colors),
       formats: PrismaFormatsMapper.toPrisma(card.formats),
       versions: PrismaVersionsMapper.toPrisma(card.versions),
@@ -80,26 +81,16 @@ export class PrismaCardsMapper {
       faces: card.faces && {
         createMany: {
           data: card.faces.map((face) => ({
+            id: face.id,
             colors: PrismaColorsMapper.toPrisma(face.colors),
             formats: '',
             versions: '',
             language: face.language,
             name: face.name,
-            borderColor: face.borderColor,
             cmc: face.cmc,
-            collectionId: face.collectionId,
             effectText: face.effectText,
             flavorText: face.flavorText,
-            isFoundInBooster: face.isFoundInBooster,
-            isReprint: face.isReprint,
-            isReserved: face.isReprint,
-            isVariant: face.isVariant,
-            layout: face.layout,
-            isStorySpotlight: face.isStorySpotlight,
-            loyalty: face.loyalty,
             manaCost: face.manaCost,
-            rarity: face.rarity,
-            securityStamp: face.securityStamp,
             typeLine: face.typeLine,
             setId,
           })),

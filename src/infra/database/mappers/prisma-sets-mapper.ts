@@ -27,6 +27,7 @@ export class PrismaSetsMapper {
 
   static toPrisma(set: Set) {
     return {
+      id: set.id,
       code: set.code,
       name: set.name,
       type: set.type,

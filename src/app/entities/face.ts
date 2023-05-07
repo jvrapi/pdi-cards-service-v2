@@ -1,0 +1,82 @@
+import { Color } from './color';
+
+interface FaceProps {
+  id: string;
+  imageUri: string;
+  name: string;
+  manaCost: string | null;
+  effectText: string | null;
+  flavorText: string | null;
+  language: string;
+  typeLine: string;
+  setId: string;
+  colors: Color[];
+  faceOfId: string;
+  cmc: number | null;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export class Face {
+  private props: FaceProps;
+
+  constructor(props: FaceProps) {
+    this.props = props;
+  }
+
+  public get id() {
+    return this.props.id;
+  }
+
+  public get imageUri() {
+    return this.props.imageUri;
+  }
+
+  public get name() {
+    return this.props.name;
+  }
+
+  public get manaCost() {
+    return this.props.manaCost;
+  }
+
+  public get effectText() {
+    return this.props.effectText;
+  }
+
+  public get flavorText() {
+    return this.props.flavorText;
+  }
+
+  public get language() {
+    return this.props.language;
+  }
+
+  public get typeLine() {
+    return this.props.typeLine;
+  }
+
+  public get setId() {
+    return this.props.setId;
+  }
+
+  public get colors() {
+    return this.props.colors;
+  }
+
+  public get faceOfId() {
+    return this.props.faceOfId;
+  }
+
+  public get cmc() {
+    return this.props.cmc;
+  }
+
+  public get createdAt() {
+    return this.props.createdAt;
+  }
+
+  public get updatedAt() {
+    return this.props.updatedAt;
+  }
+}

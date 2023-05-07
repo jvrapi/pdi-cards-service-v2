@@ -1,8 +1,9 @@
 import { randomUUID } from 'node:crypto';
-import { type Color } from './color';
-import { type Format } from './format';
+import { Color } from './color';
+import { Format } from './format';
 import { Set } from './set';
-import { type Version } from './version';
+import { Version } from './version';
+import { Face } from './face';
 
 export interface CardProps {
   id?: string;
@@ -37,7 +38,7 @@ export interface CardProps {
 export class Card {
   private readonly props: CardProps;
 
-  private _faces: Card[];
+  private _faces: Face[];
 
   private _set: Set;
 
@@ -158,8 +159,8 @@ export class Card {
     return this._faces;
   }
 
-  public set faces(cards: Card[]) {
-    this._faces = cards;
+  public set faces(faces: Face[]) {
+    this._faces = faces;
   }
 
   public get imageUri() {

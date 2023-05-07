@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { Card } from './card';
 
 export interface SetProps {
   id?: string;
@@ -15,6 +16,7 @@ export interface SetProps {
 
 export class Set {
   private readonly props: SetProps;
+  private _cards: Card[];
 
   constructor(props: SetProps) {
     this.props = {
@@ -67,5 +69,13 @@ export class Set {
 
   public get iconUri() {
     return this.props.iconUri;
+  }
+
+  public get cards() {
+    return this._cards;
+  }
+
+  public set cards(cards: Card[]) {
+    this._cards = cards;
   }
 }
