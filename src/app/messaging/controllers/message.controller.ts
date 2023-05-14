@@ -1,16 +1,19 @@
 import { Controller, Inject } from '@nestjs/common';
 import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
 import { GetAllSetsService } from '../services/get-all-sets.service';
+import { InjectQueue } from '@nestjs/bull';
+import { Queue } from 'bull';
 import { NewSet } from '../types/new-set';
-import { CreateNewSetAndCardsService } from '../services/create-new-set-and-cards.service';
+import { MessagingSetMapper } from '../mappers/messaging-set-mapper';
 
 @Controller()
 export class MessageController {
   constructor(
     @Inject('UpdaterService')
     private readonly updaterService: ClientProxy,
+    @InjectQueue('create-new-set-and-cards')
+    private readonly createNewSetAndCardsQueue: Queue,
     private readonly getAllSetsService: GetAllSetsService,
-    private readonly createNewSetAndCards: CreateNewSetAndCardsService,
   ) {}
 
   @MessagePattern('get-all-sets')
@@ -23,6 +26,6 @@ export class MessageController {
 
   @MessagePattern('new-set')
   async newSet(@Payload() data: NewSet) {
-    await this.createNewSetAndCards.execute(data);
+    this.createNewSetAndCardsQueue.add('create-new-set-and-cards-job', data);
   }
 }

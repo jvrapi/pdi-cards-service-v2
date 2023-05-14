@@ -3,11 +3,12 @@ import { MessageController } from '~/app/messaging/controllers/message.controlle
 import { GetAllSetsService } from '~/app/messaging/services/get-all-sets.service';
 import { DatabaseModule } from './database.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { CreateNewSetAndCardsService } from '~/app/messaging/services/create-new-set-and-cards.service';
+import { QueueModule } from './queue.module';
 
 @Module({
   imports: [
     DatabaseModule,
+    QueueModule,
     ClientsModule.registerAsync([
       {
         name: 'UpdaterService',
@@ -27,6 +28,6 @@ import { CreateNewSetAndCardsService } from '~/app/messaging/services/create-new
     ]),
   ],
   controllers: [MessageController],
-  providers: [GetAllSetsService, CreateNewSetAndCardsService],
+  providers: [GetAllSetsService],
 })
 export class MessagingModule {}

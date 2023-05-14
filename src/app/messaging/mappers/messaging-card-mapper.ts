@@ -1,9 +1,9 @@
 import { Card } from '~/app/entities/card';
-import { NewCard } from '../types/new-set';
 import { MessagingColorsMapper } from './messaging-colors-mapper';
 import { MessagingFormatsMapper } from './messaging-formats-mapper';
 import { MessagingVersionsMapper } from './messaging-versions-mapper';
 import { MessagingFaceMapper } from './messaging-face-mapper';
+import { NewCard } from '../types/new-set';
 
 export class MessagingCardMapper {
   static toDomain(newCard: NewCard) {
