@@ -12,7 +12,6 @@ export class CardResolver {
   async cards(@Args() args: GetCardsArgs) {
     const { filters } = args;
     const cards = await this.getCardsService.execute(filters);
-    console.log(cards.map((card) => card.set));
     return cards;
   }
 
