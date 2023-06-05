@@ -1,11 +1,11 @@
 import { Card } from '~/app/entities/card';
 
 export interface FindByFiltersProps {
-  take: number;
+  take?: number;
   skip?: number;
   name?: string;
   type?: string;
-  id?: string;
+  ids?: string[];
 }
 
 export abstract class CardsRepository {

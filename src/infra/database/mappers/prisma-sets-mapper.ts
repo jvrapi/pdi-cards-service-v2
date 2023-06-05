@@ -31,6 +31,7 @@ export class PrismaSetsMapper {
       code: set.code,
       name: set.name,
       type: set.type,
+      iconUri: set.iconUri,
       releasedAt: set.releasedAt,
       isDigital: set.isDigital,
       isFoilOnly: set.isFoilOnly,

@@ -19,6 +19,7 @@ export class PrismaCardsMapper {
       faceOfId: raw.faceOfId,
       rarity: raw.rarity,
       cmc: Number(raw.cmc),
+      imageUri: raw.imageUri,
       borderColor: raw.borderColor,
       collectionId: raw.collectionId,
       frame: raw.frame,
@@ -56,6 +57,7 @@ export class PrismaCardsMapper {
   static toPrisma(card: Card, setId: string) {
     return {
       id: card.id,
+      imageUri: card.imageUri,
       colors: PrismaColorsMapper.toPrisma(card.colors),
       formats: PrismaFormatsMapper.toPrisma(card.formats),
       versions: PrismaVersionsMapper.toPrisma(card.versions),

@@ -9,9 +9,11 @@ import { Face } from '../entities/face';
 export class CardResolver {
   constructor(private readonly getCardsService: GetCardsService) {}
   @Query(() => [Card])
-  cards(@Args() args: GetCardsArgs) {
+  async cards(@Args() args: GetCardsArgs) {
     const { filters } = args;
-    return this.getCardsService.execute(filters);
+    const cards = await this.getCardsService.execute(filters);
+    console.log(cards.map((card) => card.set));
+    return cards;
   }
 
   @ResolveField(() => [String])
@@ -27,6 +29,11 @@ export class CardResolver {
   @ResolveField(() => [String])
   versions(@Root() card: CardEntity) {
     return card.versions.map((version) => version.value);
+  }
+
+  @ResolveField(() => String)
+  type(@Root() card: CardEntity) {
+    return card.typeLine;
   }
 
   @ResolveField(() => [Face])

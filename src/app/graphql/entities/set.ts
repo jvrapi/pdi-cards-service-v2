@@ -2,18 +2,18 @@ import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class Set {
-  @Field(() => String)
+  @Field()
   id: string;
 
-  @Field(() => String)
+  @Field()
   name: string;
 
-  @Field(() => String)
+  @Field()
   code: string;
 
-  @Field(() => String)
+  @Field()
   releasedAt: string;
 
-  @Field(() => String)
+  @Field()
   iconUri: string;
 }

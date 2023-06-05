@@ -8,12 +8,12 @@ export class CardInput {
   @Field({ nullable: true })
   type?: string;
 
+  @Field(() => [String], { nullable: true })
+  ids?: string[];
+
   @Field({ nullable: true })
-  id?: string;
+  take?: number;
 
-  @Field(() => Int)
-  take: number;
-
-  @Field(() => Int, { nullable: true })
+  @Field({ nullable: true })
   skip?: number;
 }
