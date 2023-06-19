@@ -43,7 +43,7 @@ export class PrismaCardsMapper {
       versions: PrismaVersionsMapper.toDomain(raw.versions),
     });
 
-    if (raw.faces) {
+    if (raw.faces.length) {
       card.faces = raw.faces.map(PrismaFaceMapper.toDomain);
     }
 

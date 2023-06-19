@@ -38,7 +38,7 @@ export interface CardProps {
 export class Card {
   private readonly props: CardProps;
 
-  private _faces: Face[];
+  private _faces: Face[] = [];
 
   private _set: Set;
 

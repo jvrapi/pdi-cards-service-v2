@@ -18,6 +18,7 @@ async function bootstrap() {
   const PORT = process.env.APP_PORT || 3000;
   await app.startAllMicroservices();
   await app.listen(PORT);
-  new Logger().log(`Servidor iniciado na porta ${PORT}`);
+
+  new Logger().log(`Cards service server is running on port ${PORT} 🔥`);
 }
 bootstrap();
