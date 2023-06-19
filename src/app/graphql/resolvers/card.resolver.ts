@@ -37,7 +37,7 @@ export class CardResolver {
 
   @ResolveField(() => [Face])
   faces(@Root() card: CardEntity) {
-    card.faces?.map((face) => ({
+    return card.faces?.map((face) => ({
       id: face.id,
       name: face.name,
       type: face.typeLine,
