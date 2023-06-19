@@ -84,6 +84,7 @@ export class PrismaCardsMapper {
         createMany: {
           data: card.faces.map((face) => ({
             id: face.id,
+            imageUri: face.imageUri,
             colors: PrismaColorsMapper.toPrisma(face.colors),
             formats: '',
             versions: '',
