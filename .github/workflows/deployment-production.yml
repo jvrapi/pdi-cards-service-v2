@@ -38,13 +38,13 @@ jobs:
         with:
           file_name: .env
           envkey_NODE_ENV: "PRODUCTION"
-          envkey_DATABASE_URL: " ${{ secrets.DATABASE_URL }} "
-          envkey_RABBITMQ_URL: " ${{ secrets.RABBITMQ_URL }} "
-          envkey_RABBITMQ_CARDS_QUEUE: " ${{ secrets.RABBITMQ_CARDS_QUEUE }} "
-          envkey_RABBITMQ_UPDATER_QUEUE: " ${{ secrets.RABBITMQ_UPDATER_QUEUE }} "
-          envkey_APP_PORT: " ${{ secrets.APP_PORT }} "
-          envkey_REDIS_PORT: " ${{ secrets.REDIS_PORT }} "
-          envkey_REDIS_HOST: " ${{ secrets.REDIS_HOST }} "
-          envkey_REDIS_PASSWORD: " ${{ secrets.REDIS_PASSWORD }} "
+          envkey_DATABASE_URL: "${{ secrets.DATABASE_URL }}"
+          envkey_RABBITMQ_URL: "${{ secrets.RABBITMQ_URL }}"
+          envkey_RABBITMQ_CARDS_QUEUE: "${{ secrets.RABBITMQ_CARDS_QUEUE }}"
+          envkey_RABBITMQ_UPDATER_QUEUE: "${{ secrets.RABBITMQ_UPDATER_QUEUE }}"
+          envkey_APP_PORT: "${{ secrets.APP_PORT }}"
+          envkey_REDIS_PORT: "${{ secrets.REDIS_PORT }}"
+          envkey_REDIS_HOST: "${{ secrets.REDIS_HOST }}"
+          envkey_REDIS_PASSWORD: "${{ secrets.REDIS_PASSWORD }}"
       - name: Update server
         run: pm2 restart server
