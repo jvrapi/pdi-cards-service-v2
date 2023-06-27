@@ -15,6 +15,7 @@ export class PrismaCardsMapper {
   static toDomain(raw: RawResponse): Card {
     const card = new Card({
       id: raw.id,
+      setId: raw.setId,
       name: raw.name,
       faceOfId: raw.faceOfId,
       rarity: raw.rarity,
@@ -54,7 +55,7 @@ export class PrismaCardsMapper {
     return card;
   }
 
-  static toPrisma(card: Card, setId: string) {
+  static toPrisma(card: Card) {
     return {
       id: card.id,
       imageUri: card.imageUri,
@@ -79,26 +80,7 @@ export class PrismaCardsMapper {
       rarity: card.rarity,
       securityStamp: card.securityStamp,
       typeLine: card.typeLine,
-      setId,
-      faces: card.faces && {
-        createMany: {
-          data: card.faces.map((face) => ({
-            id: face.id,
-            imageUri: face.imageUri,
-            colors: PrismaColorsMapper.toPrisma(face.colors),
-            formats: '',
-            versions: '',
-            language: face.language,
-            name: face.name,
-            cmc: face.cmc,
-            effectText: face.effectText,
-            flavorText: face.flavorText,
-            manaCost: face.manaCost,
-            typeLine: face.typeLine,
-            setId,
-          })),
-        },
-      },
+      setId: card.setId,
     };
   }
 }

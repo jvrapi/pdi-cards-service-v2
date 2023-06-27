@@ -7,6 +7,7 @@ import { Face } from './face';
 
 export interface CardProps {
   id?: string;
+  setId: string;
   imageUri?: string;
   faceOfId: string | null;
   name: string;
@@ -53,6 +54,10 @@ export class Card {
 
   public get id() {
     return this.props.id;
+  }
+
+  public get setId() {
+    return this.props.setId;
   }
 
   public get name() {

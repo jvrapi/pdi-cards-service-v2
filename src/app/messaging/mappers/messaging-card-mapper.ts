@@ -9,6 +9,7 @@ export class MessagingCardMapper {
   static toDomain(newCard: NewCard) {
     const card = new Card({
       id: newCard.id,
+      setId: newCard.setId,
       faceOfId: null,
       imageUri: newCard.imageUri,
       name: newCard.name,

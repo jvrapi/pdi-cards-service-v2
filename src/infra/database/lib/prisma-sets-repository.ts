@@ -3,7 +3,6 @@ import { SetsRepository } from '../repositories/sets-repository';
 import { Set } from '~/app/entities/set';
 import { PrismaService } from '../services/prisma.service';
 import { PrismaSetsMapper } from '../mappers/prisma-sets-mapper';
-import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper';
 
 @Injectable()
 export class PrismaSetsRepository implements SetsRepository {
@@ -24,17 +23,9 @@ export class PrismaSetsRepository implements SetsRepository {
     return PrismaSetsMapper.toDomain(set);
   }
 
-  async createSetAndCards(set: Set): Promise<void> {
+  async create(set: Set): Promise<void> {
     await this.prisma.set.create({
       data: PrismaSetsMapper.toPrisma(set),
     });
-
-    const createCards = set.cards.map((card) =>
-      this.prisma.card.create({
-        data: PrismaCardsMapper.toPrisma(card, set.id),
-      }),
-    );
-
-    await Promise.all(createCards);
   }
 }

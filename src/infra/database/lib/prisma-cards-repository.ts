@@ -7,6 +7,8 @@ import { PrismaService } from '../services/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper';
 import { Prisma } from '@prisma/client';
+import { Face } from '~/app/entities/face';
+import { PrismaFaceMapper } from '../mappers/prisma-face-mapper';
 
 @Injectable()
 export class PrismaCardsRepository implements CardsRepository {
@@ -35,5 +37,17 @@ export class PrismaCardsRepository implements CardsRepository {
     });
 
     return cards.map(PrismaCardsMapper.toDomain);
+  }
+
+  async createCards(cards: Card[]): Promise<void> {
+    await this.prisma.card.createMany({
+      data: cards.map(PrismaCardsMapper.toPrisma),
+    });
+  }
+
+  async createFaces(faces: Face[]): Promise<void> {
+    await this.prisma.card.createMany({
+      data: faces.map(PrismaFaceMapper.toPrisma),
+    });
   }
 }

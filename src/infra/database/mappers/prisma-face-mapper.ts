@@ -21,4 +21,22 @@ export class PrismaFaceMapper {
       colors: PrismaColorsMapper.toDomain(raw.colors),
     });
   }
+
+  static toPrisma(face: Face) {
+    return {
+      id: face.id,
+      imageUri: face.imageUri,
+      colors: PrismaColorsMapper.toPrisma(face.colors),
+      formats: '',
+      versions: '',
+      language: face.language,
+      name: face.name,
+      cmc: face.cmc,
+      effectText: face.effectText,
+      flavorText: face.flavorText,
+      manaCost: face.manaCost,
+      typeLine: face.typeLine,
+      setId: face.setId,
+    };
+  }
 }

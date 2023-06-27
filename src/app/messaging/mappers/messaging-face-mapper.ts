@@ -8,7 +8,7 @@ export class MessagingFaceMapper {
       id: newCardFace.id,
       setId: newCardFace.setId,
       imageUri: newCardFace.imageUri,
-      faceOfId: newCardFace.id,
+      faceOfId: newCardFace.faceOfId,
       name: newCardFace.name,
       cmc: Number(newCardFace.cmc),
       language: newCardFace.language,
