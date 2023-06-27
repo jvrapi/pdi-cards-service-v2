@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './infra/modules/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
+import { NewrelicInterceptor } from './app/interceptors/new-relic-interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
       },
     },
   });
+  app.useGlobalInterceptors(new NewrelicInterceptor());
   const PORT = process.env.APP_PORT || 4000;
   await app.startAllMicroservices();
   await app.listen(PORT);
