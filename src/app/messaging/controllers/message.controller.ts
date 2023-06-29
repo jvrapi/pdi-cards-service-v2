@@ -26,6 +26,9 @@ export class MessageController {
 
   @MessagePattern('new-set')
   async newSet(@Payload() data: NewSet) {
-    this.createNewSetAndCardsQueue.add('create-new-set-and-cards-job', data);
+    this.createNewSetAndCardsQueue.add('create-new-set-and-cards-job', data, {
+      removeOnComplete: true,
+      removeOnFail: true,
+    });
   }
 }
