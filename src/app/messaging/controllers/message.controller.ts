@@ -4,7 +4,6 @@ import { GetAllSetsService } from '../services/get-all-sets.service';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { NewSet } from '../types/new-set';
-import { MessagingSetMapper } from '../mappers/messaging-set-mapper';
 
 @Controller()
 export class MessageController {
