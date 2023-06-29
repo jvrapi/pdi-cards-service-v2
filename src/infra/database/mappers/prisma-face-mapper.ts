@@ -37,6 +37,7 @@ export class PrismaFaceMapper {
       manaCost: face.manaCost,
       typeLine: face.typeLine,
       setId: face.setId,
+      faceOfId: face.faceOfId,
     };
   }
 }
