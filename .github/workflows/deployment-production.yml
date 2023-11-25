@@ -44,8 +44,6 @@ jobs:
           envkey_RABBITMQ_UPDATER_QUEUE: "${{ secrets.RABBITMQ_UPDATER_QUEUE }}"
           envkey_APP_PORT: "${{ secrets.APP_PORT }}"
           envkey_REDIS_PORT: "${{ secrets.REDIS_PORT }}"
-          envkey_REDIS_HOST: "${{ secrets.REDIS_HOST }}"
-          envkey_REDIS_PASSWORD: "${{ secrets.REDIS_PASSWORD }}"
           envkey_NEW_RELIC_APP_NAME: "${{ secrets.NEW_RELIC_APP_NAME }}"
           envkey_NEW_RELIC_LABELS: "${{ secrets.NEW_RELIC_LABELS }}"
           envkey_NEW_RELIC_LICENSE_KEY: "${{ secrets.NEW_RELIC_LICENSE_KEY }}"

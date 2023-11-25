@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-import { MessageController } from '~/app/messaging/controllers/message.controller';
-import { GetAllSetsService } from '~/app/messaging/services/get-all-sets.service';
 import { DatabaseModule } from './database.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { QueueModule } from './queue.module';
+import { GetAllSetsService } from '~/services/get-all-sets.service';
+import { MessageController } from '~/app/controllers/message.controller';
+import { CreateNewSetAndCardsService } from '~/services/create-new-set-and-cards.service';
 
 @Module({
   imports: [
     DatabaseModule,
-    QueueModule,
     ClientsModule.registerAsync([
       {
         name: 'UpdaterService',
@@ -28,6 +27,6 @@ import { QueueModule } from './queue.module';
     ]),
   ],
   controllers: [MessageController],
-  providers: [GetAllSetsService],
+  providers: [GetAllSetsService, CreateNewSetAndCardsService],
 })
 export class MessagingModule {}
