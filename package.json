@@ -18,7 +18,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:run": "npx prisma migrate deploy"
+    "typeorm": "typeorm-ts-node-commonjs -d src/infra/database/typeorm/config/data-source.ts",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "migration:create": "typeorm-ts-node-commonjs migration:create src/infra/database/typeorm/migrations/$npm_config_name"
   },
   "dependencies": {
     "@apollo/server": "^4.7.1",
@@ -34,10 +37,12 @@
     "amqp-connection-manager": "^4.1.13",
     "amqplib": "^0.10.3",
     "graphql": "^16.6.0",
+    "mysql2": "^3.6.5",
     "newrelic": "^11.5.0",
     "prisma": "^4.13.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm": "^0.3.17"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
