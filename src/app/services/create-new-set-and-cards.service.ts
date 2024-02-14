@@ -1,6 +1,6 @@
-import { SetsRepository } from '~/infra/database/repositories/sets-repository';
+import { SetsRepository } from '~/app/repositories/sets-repository';
 import { Injectable, Logger } from '@nestjs/common';
-import { CardsRepository } from '~/infra/database/repositories/cards.repository';
+import { CardsRepository } from '~/app/repositories/cards.repository';
 import { Face } from '~/app/entities/face';
 import { Set } from '~/app/entities/set';
 

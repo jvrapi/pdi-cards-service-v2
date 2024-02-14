@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './database.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { GetAllSetsService } from '~/services/get-all-sets.service';
 import { MessageController } from '~/app/controllers/message.controller';
-import { CreateNewSetAndCardsService } from '~/services/create-new-set-and-cards.service';
+import { CreateNewSetAndCardsService } from '~/app/services/create-new-set-and-cards.service';
+import { GetAllSetsService } from '~/app/services/get-all-sets.service';
 
 @Module({
   imports: [

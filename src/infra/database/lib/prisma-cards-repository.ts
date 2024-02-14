@@ -2,7 +2,7 @@ import { Card } from '~/app/entities/card';
 import {
   CardsRepository,
   FindByFiltersProps,
-} from '../repositories/cards.repository';
+} from '../../../app/repositories/cards.repository';
 import { PrismaService } from '../services/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper';

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SetsRepository } from '../repositories/sets-repository';
+import { SetsRepository } from '../../../app/repositories/sets-repository';
 import { Set } from '~/app/entities/set';
 import { PrismaService } from '../services/prisma.service';
 import { PrismaSetsMapper } from '../mappers/prisma-sets-mapper';

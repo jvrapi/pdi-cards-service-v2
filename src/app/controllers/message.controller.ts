@@ -1,10 +1,11 @@
 import { Controller, Inject, Logger } from '@nestjs/common';
 import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
 import newRelic from 'newrelic';
-import { CreateNewSetAndCardsService } from '~/services/create-new-set-and-cards.service';
-import { GetAllSetsService } from '~/services/get-all-sets.service';
+
 import { NewSet } from '../messaging/types/new-set';
 import { MessagingSetMapper } from '../messaging/mappers/messaging-set-mapper';
+import { CreateNewSetAndCardsService } from '../services/create-new-set-and-cards.service';
+import { GetAllSetsService } from '../services/get-all-sets.service';
 
 @Controller()
 export class MessageController {

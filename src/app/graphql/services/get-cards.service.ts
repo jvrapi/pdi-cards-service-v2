@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CardsRepository } from '~/infra/database/repositories/cards.repository';
+import { CardsRepository } from '~/app/repositories/cards.repository';
 
 interface GetCardsFilers {
   take?: number;
