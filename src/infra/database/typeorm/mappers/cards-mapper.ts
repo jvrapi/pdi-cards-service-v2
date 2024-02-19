@@ -3,7 +3,6 @@ import { FormatsMapper } from './formats-mapper';
 import { SetsMapper } from './sets-mapper';
 import { VersionsMapper } from './versions-mapper';
 import { Card } from '~/app/entities/card';
-import { FaceMapper } from './face-mapper';
 
 import { Card as RawResponse } from '../entities/card.entity';
 
@@ -13,9 +12,7 @@ export class CardsMapper {
       id: raw.id,
       setId: raw.setId,
       name: raw.name,
-      faceOfId: raw.faceOfId,
-      rarity: raw.rarity,
-      cmc: Number(raw.cmc),
+      cmc: raw.cmc,
       imageUri: raw.imageUri,
       borderColor: raw.borderColor,
       collectionId: raw.collectionId,
@@ -35,14 +32,7 @@ export class CardsMapper {
       createdAt: raw.createdAt,
       updatedAt: raw.updatedAt,
       isReprint: raw.isReprint,
-      colors: ColorsMapper.toDomain(raw.colors),
-      formats: FormatsMapper.toDomain(raw.formats),
-      versions: VersionsMapper.toDomain(raw.versions),
     });
-
-    if (raw.faces.length) {
-      card.faces = raw.faces.map(FaceMapper.toDomain);
-    }
 
     if (raw.set) {
       card.set = SetsMapper.toDomain(raw.set);

@@ -1,15 +1,12 @@
 import {
-  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Card } from './card.entity';
-import { randomUUID } from 'node:crypto';
 
 @Entity('sets')
 export class Set {
@@ -45,9 +42,4 @@ export class Set {
 
   @OneToMany(() => Card, (card) => card.set, { cascade: true })
   cards: Card[];
-
-  @BeforeInsert()
-  generateId() {
-    this.id = randomUUID();
-  }
 }

@@ -1,7 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Like, Repository } from 'typeorm';
 import { Card } from '~/app/entities/card';
-import { Face } from '~/app/entities/face';
 import {
   CardsRepository,
   FindByFiltersProps,
@@ -28,13 +27,6 @@ export class TypeOrmCardsRepository implements CardsRepository {
     });
 
     return cards.map(CardsMapper.toDomain);
-  }
-  async createCards(data: NewCardProps[]): Promise<void> {
-    const cards = data.map((card) => {
-      const colors = card.colors.map((color) => color.value).toString();
-      return this.cardRepository.create(card);
-    });
-    await this.cardRepository.save(cards);
   }
 
   async createFaces(data: NewCardFaceProps[]): Promise<void> {

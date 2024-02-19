@@ -24,4 +24,8 @@ export class CardFace {
   @ManyToOne(() => Card)
   @JoinColumn({ name: 'card_id' })
   card: Card;
+
+  @ManyToOne(() => Card)
+  @JoinColumn({ name: 'face_id' })
+  face: Card;
 }

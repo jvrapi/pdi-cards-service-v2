@@ -40,7 +40,7 @@ declare global {
     id: string;
     setId: string;
     imageUri: string | null;
-    faces: NewCardFace[];
+    faces: NewCardFaceProps[];
   }
 
   interface NewSetProps {
@@ -52,7 +52,7 @@ declare global {
     releasedAt: string;
     type: string;
     iconUri: string;
-    cards: NewCard[];
+    cards: NewCardProps[];
   }
 }
 export {};

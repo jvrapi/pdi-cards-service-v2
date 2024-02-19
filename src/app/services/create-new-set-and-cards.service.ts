@@ -1,8 +1,6 @@
 import { SetsRepository } from '~/app/repositories/sets-repository';
 import { Injectable, Logger } from '@nestjs/common';
 import { CardsRepository } from '~/app/repositories/cards.repository';
-import { Face } from '~/app/entities/face';
-import { Set } from '~/app/entities/set';
 
 @Injectable()
 export class CreateNewSetAndCardsService {
@@ -10,39 +8,96 @@ export class CreateNewSetAndCardsService {
 
   constructor(
     private readonly setsRepository: SetsRepository,
-    private cardsRepository: CardsRepository,
+    private readonly cardsRepository: CardsRepository,
   ) {}
 
-  async execute(set: Set) {
-    if (set.cards.length) {
-      try {
-        const setAlreadyExists = await this.setsRepository.getById(set.id);
-        if (setAlreadyExists) {
-          this.logger.warn(
-            `O set ${set.code} não foi criado pois ele já está cadastrado no banco de dados`,
-          );
-          return;
+  async execute(data: NewSetProps) {
+    try {
+      const setId = `${data.code}-${data.id}`;
+
+      this.logger.debug(`Processing set ${setId}`);
+
+      const setAlreadyExists = await this.setsRepository.getById(data.id);
+      if (setAlreadyExists) {
+        this.logger.warn(`Set already exists`);
+        return;
+      }
+      this.logger.debug(
+        `Creating set ${setId} and ${data.cards.length} new cards`,
+      );
+
+      const cards: CreateSetCardsParams[] = [];
+
+      data.cards.forEach((card) => {
+        const cardData = {
+          borderColor: card.borderColor,
+          cmc: card.cmc ?? 0,
+          collectionId: card.collectionId,
+          effectText: card.effectText,
+          flavorText: card.flavorText,
+          frame: card.frame,
+          id: card.id,
+          imageUri: card.imageUri,
+          isFoundInBooster: card.isFoundInBooster,
+          isReprint: card.isReprint,
+          isReserved: card.isReserved,
+          isStorySpotlight: card.isStorySpotlight,
+          isVariant: card.isVariant,
+          language: card.language,
+          layout: card.layout,
+          loyalty: card.loyalty,
+          manaCost: card.manaCost,
+          name: card.name,
+          rarity: card.rarity,
+          securityStamp: card.securityStamp,
+          setId: card.setId,
+          typeLine: card.typeLine,
+          faces: [],
+        };
+
+        if (card.faces.length) {
+          card.faces.forEach((face) => {
+            cards.push({
+              borderColor: card.borderColor,
+              cmc: face.cmc ?? 0,
+              collectionId: card.collectionId,
+              effectText: face.effectText,
+              flavorText: face.flavorText,
+              frame: card.frame,
+              id: face.id,
+              imageUri: face.imageUri,
+              isFoundInBooster: card.isFoundInBooster,
+              isReprint: card.isReprint,
+              isReserved: card.isReserved,
+              isStorySpotlight: card.isStorySpotlight,
+              isVariant: card.isVariant,
+              language: face.language,
+              layout: card.layout,
+              loyalty: card.loyalty,
+              manaCost: face.manaCost,
+              name: face.name,
+              securityStamp: card.securityStamp,
+              setId: face.setId,
+              typeLine: face.typeLine,
+            });
+
+            cardData.faces.push({
+              cardId: face.faceOfId,
+              faceId: face.id,
+            });
+          });
         }
 
-        this.logger.log(
-          `Inserindo a coleção ${set.code} e ${set.cards.length} novas cartas`,
-        );
+        cards.push(cardData);
+      });
 
-        const faces = set.cards.reduce<Face[]>(
-          (acc, curr) => acc.concat(curr.faces),
-          [],
-        );
-
-        await this.setsRepository.create(set);
-        await this.cardsRepository.createCards(set.cards);
-        await this.cardsRepository.createFaces(faces);
-      } catch (error) {
-        this.logger.error(`Erro ao tentar criar o set ${set.cards}`, error);
-      }
-    } else {
-      this.logger.warn(
-        `O coleção ${set.code} não foi criada pois não possui cartas`,
-      );
+      await this.setsRepository.create({
+        ...data,
+        cards,
+      });
+    } catch (error) {
+      this.logger.error(error);
+      throw error;
     }
   }
 }

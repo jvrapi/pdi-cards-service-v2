@@ -17,17 +17,17 @@ export class CardResolver {
 
   @ResolveField(() => [String])
   colors(@Root() card: CardEntity) {
-    return card.colors.map((color) => color.value);
+    return 'card.colors.map((color) => color.value);';
   }
 
   @ResolveField(() => [String])
   formats(@Root() card: CardEntity) {
-    return card.formats.map((format) => format.value);
+    return 'card.formats.map((format) => format.value);';
   }
 
   @ResolveField(() => [String])
   versions(@Root() card: CardEntity) {
-    return card.versions.map((version) => version.value);
+    return 'card.versions.map((version) => version.value);';
   }
 
   @ResolveField(() => String)
@@ -41,7 +41,6 @@ export class CardResolver {
       id: face.id,
       name: face.name,
       type: face.typeLine,
-      colors: face.colors.map((color) => color.value),
       imageUri: face.imageUri,
     }));
   }

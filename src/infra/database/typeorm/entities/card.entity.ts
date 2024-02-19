@@ -58,9 +58,6 @@ export class Card {
   @Column({ name: 'flavor_text' })
   flavorText: string;
 
-  @Column()
-  rarity: string;
-
   @Column({ name: 'is_reserved' })
   isReserved: boolean;
 
@@ -79,18 +76,6 @@ export class Card {
   @Column({ name: 'image_uri' })
   imageUri: string;
 
-  @Column()
-  colors: string;
-
-  @Column()
-  formats: string;
-
-  @Column('simple-array', { array: true })
-  versions: string;
-
-  @Column({ name: 'face_of_id' })
-  faceOfId: string;
-
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
@@ -101,6 +86,6 @@ export class Card {
   @JoinColumn({ name: 'set_id' })
   set: Set;
 
-  @OneToMany(() => CardFace, (cardFace) => cardFace.card)
+  @OneToMany(() => CardFace, (cardFace) => cardFace.card, { cascade: true })
   faces: CardFace[];
 }

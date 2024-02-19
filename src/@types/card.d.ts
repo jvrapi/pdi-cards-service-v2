@@ -16,7 +16,6 @@ declare global {
     securityStamp: string | null;
     effectText: string | null;
     flavorText: string | null;
-    rarity: string | null;
     isReserved: boolean | null;
     isReprint: boolean | null;
     isVariant: boolean | null;

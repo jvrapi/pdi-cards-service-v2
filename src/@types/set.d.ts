@@ -12,7 +12,9 @@ declare global {
     updatedAt: Date;
   }
 
-  type CreateSetCardsParams = CreateCardParams & CreateCardFaceParams;
+  type CreateSetCardsParams = CreateCardParams & {
+    faces?: CreateCardFaceParams[];
+  };
 
   type CreateSetParams = Omit<SetProps, 'createdAt' | 'updatedAt'> & {
     cards: CreateSetCardsParams[];

@@ -26,16 +26,7 @@ export class TypeOrmSetsRepository implements SetsRepository {
   }
 
   async create(set: CreateSetParams): Promise<void> {
-    const newSet = this.setRepository.create({
-      code: set.code,
-      name: set.name,
-      type: set.type,
-      releasedAt: set.releasedAt,
-      isDigital: set.isDigital,
-      isFoilOnly: set.isFoilOnly,
-      iconUri: set.iconUri,
-      cards: set.cards,
-    });
+    const newSet = this.setRepository.create(set);
     await this.setRepository.save(newSet);
   }
 }

@@ -1,17 +1,13 @@
-import { Color, ColorName } from '~/app/entities/color';
+import { Color } from '~/app/entities/color';
 
 export class ColorsMapper {
-  static toDomain(color: string | null): Color[] {
-    if (color) {
-      return color
-        .split(',')
-        .map((name) => new Color(ColorName[name as keyof typeof ColorName]));
-    }
-
-    return [];
-  }
-
-  static toPrisma(colors: Color[]) {
-    return colors.map((color) => color.value).toString();
+  static toDomain(color: Color): Color {
+    return new Color({
+      id: color.id,
+      name: color.name,
+      color: color.color,
+      createdAt: color.createdAt,
+      updatedAt: color.updatedAt,
+    });
   }
 }

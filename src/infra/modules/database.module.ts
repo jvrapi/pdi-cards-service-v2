@@ -8,6 +8,11 @@ import { Card } from '../database/typeorm/entities/card.entity';
 import { Set } from '../database/typeorm/entities/set.entity';
 import { TypeOrmCardsRepository } from '../database/typeorm/repositories/typeorm-cards.repository';
 import { TypeOrmSetsRepository } from '../database/typeorm/repositories/typeorm-sets.repository';
+import { CardFace } from '../database/typeorm/entities/card-face.entity';
+import { Color } from '../database/typeorm/entities/color.entity';
+import { Version } from '../database/typeorm/entities/version.entity';
+import { Rarity } from '../database/typeorm/entities/rarity.entity';
+import { Format } from '../database/typeorm/entities/format.entity';
 
 @Module({
   imports: [
@@ -16,7 +21,15 @@ import { TypeOrmSetsRepository } from '../database/typeorm/repositories/typeorm-
       imports: [ConfigModule],
       useClass: TypeOrmConfigService,
     }),
-    TypeOrmModule.forFeature([Card, Set]),
+    TypeOrmModule.forFeature([
+      Card,
+      Set,
+      CardFace,
+      Color,
+      Version,
+      Rarity,
+      Format,
+    ]),
   ],
   providers: [
     {

@@ -81,10 +81,6 @@ export class Card {
     return this.props.flavorText;
   }
 
-  public get rarity() {
-    return this.props.rarity;
-  }
-
   public get isReserved() {
     return this.props.isReserved;
   }
@@ -103,18 +99,6 @@ export class Card {
 
   public get isStorySpotlight() {
     return this.props.isStorySpotlight;
-  }
-
-  public get colors() {
-    return this._colors;
-  }
-
-  public get versions() {
-    return this._versions;
-  }
-
-  public get formats() {
-    return this._formats;
   }
 
   public get createdAt() {
