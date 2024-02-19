@@ -1,55 +1,24 @@
-import { randomUUID } from 'node:crypto';
+import { Set } from './set';
+import { Face } from './face';
 import { Color } from './color';
 import { Format } from './format';
-import { Set } from './set';
 import { Version } from './version';
-import { Face } from './face';
-
-export interface CardProps {
-  id?: string;
-  setId: string;
-  imageUri?: string;
-  faceOfId: string | null;
-  name: string;
-  language: string;
-  layout: string | null;
-  cmc: number | null;
-  typeLine: string | null;
-  collectionId: string | null;
-  frame: string | null;
-  borderColor: string | null;
-  manaCost: string | null;
-  loyalty: string | null;
-  securityStamp: string | null;
-  effectText: string | null;
-  flavorText: string | null;
-  rarity: string | null;
-  isReserved: boolean | null;
-  isReprint: boolean | null;
-  isVariant: boolean | null;
-  isFoundInBooster: boolean | null;
-  isStorySpotlight: boolean | null;
-  colors: Color[];
-  formats: Format[];
-  versions: Version[];
-  createdAt?: Date;
-  updatedAt?: Date;
-}
 
 export class Card {
   private readonly props: CardProps;
 
   private _faces: Face[] = [];
 
+  private _colors: Color[] = [];
+
+  private _formats: Format[] = [];
+
+  private _versions: Version[] = [];
+
   private _set: Set;
 
   constructor(props: CardProps) {
-    this.props = {
-      ...props,
-      id: props.id ?? randomUUID(),
-      createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
-    };
+    this.props = props;
   }
 
   public get id() {
@@ -137,15 +106,15 @@ export class Card {
   }
 
   public get colors() {
-    return this.props.colors;
+    return this._colors;
   }
 
   public get versions() {
-    return this.props.versions;
+    return this._versions;
   }
 
   public get formats() {
-    return this.props.formats;
+    return this._formats;
   }
 
   public get createdAt() {
@@ -154,10 +123,6 @@ export class Card {
 
   public get updatedAt() {
     return this.props.updatedAt;
-  }
-
-  public get faceOfId() {
-    return this.props.faceOfId;
   }
 
   public get faces() {

@@ -1,30 +1,11 @@
-import { randomUUID } from 'node:crypto';
 import { Card } from './card';
-
-export interface SetProps {
-  id?: string;
-  iconUri?: string;
-  code: string;
-  name: string;
-  type: string;
-  releasedAt: string;
-  isDigital: boolean;
-  isFoilOnly: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
 
 export class Set {
   private readonly props: SetProps;
   private _cards: Card[];
 
   constructor(props: SetProps) {
-    this.props = {
-      ...props,
-      id: props.id ?? randomUUID(),
-      createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
-    };
+    this.props = props;
   }
 
   public get id() {

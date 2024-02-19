@@ -1,19 +1,27 @@
-export enum ColorName {
-  W = 'W',
-  B = 'B',
-  R = 'R',
-  U = 'U',
-  G = 'G',
-}
-
 export class Color {
-  private readonly color: ColorName
+  private readonly props: ColorProps;
 
-  constructor(color: ColorName) {
-    this.color = color
+  constructor(props: ColorProps) {
+    this.props = props;
   }
 
-  public get value() {
-    return this.color
+  public get id() {
+    return this.props.id;
+  }
+
+  public get name() {
+    return this.props.name;
+  }
+
+  public get color() {
+    return this.props.color;
+  }
+
+  public get createdAt() {
+    return this.props.createdAt;
+  }
+
+  public get updatedAt() {
+    return this.props.updatedAt;
   }
 }

@@ -1,20 +1,31 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from '../database/services/prisma.service';
-import { CardsRepository } from '../../app/repositories/cards.repository';
-import { PrismaCardsRepository } from '../database/lib/prisma-cards-repository';
-import { SetsRepository } from '../../app/repositories/sets-repository';
-import { PrismaSetsRepository } from '../database/lib/prisma-sets-repository';
+import { CardsRepository } from '~/app/repositories/cards.repository';
+import { SetsRepository } from '~/app/repositories/sets-repository';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmConfigService } from '../database/typeorm/config/database-config.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Card } from '../database/typeorm/entities/card.entity';
+import { Set } from '../database/typeorm/entities/set.entity';
+import { TypeOrmCardsRepository } from '../database/typeorm/repositories/typeorm-cards.repository';
+import { TypeOrmSetsRepository } from '../database/typeorm/repositories/typeorm-sets.repository';
 
 @Module({
+  imports: [
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      imports: [ConfigModule],
+      useClass: TypeOrmConfigService,
+    }),
+    TypeOrmModule.forFeature([Card, Set]),
+  ],
   providers: [
-    PrismaService,
     {
       provide: CardsRepository,
-      useClass: PrismaCardsRepository,
+      useClass: TypeOrmCardsRepository,
     },
     {
       provide: SetsRepository,
-      useClass: PrismaSetsRepository,
+      useClass: TypeOrmSetsRepository,
     },
   ],
   exports: [CardsRepository, SetsRepository],

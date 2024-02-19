@@ -1,13 +1,7 @@
-import { type Card as RawCard, type Set as RawSet } from '@prisma/client';
-
 import { Set } from '~/app/entities/set';
+import { Set as RawResponse } from '../entities/set.entity';
 
-type RawResponse = RawSet & {
-  cards?: (RawCard & {
-    faces: RawCard[];
-  })[];
-};
-export class PrismaSetsMapper {
+export class SetsMapper {
   static toDomain(raw: RawResponse): Set {
     const set = new Set({
       id: raw.id,

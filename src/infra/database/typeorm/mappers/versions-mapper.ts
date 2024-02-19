@@ -1,6 +1,6 @@
 import { Version, VersionName } from '~/app/entities/version';
 
-export class PrismaVersionsMapper {
+export class VersionsMapper {
   static toDomain(versions: string | null): Version[] {
     if (versions) {
       return versions

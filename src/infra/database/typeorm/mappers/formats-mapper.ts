@@ -1,6 +1,6 @@
 import { Format, FormatName } from '~/app/entities/format';
 
-export class PrismaFormatsMapper {
+export class FormatsMapper {
   static toDomain(formats: string | null): Format[] {
     if (formats) {
       return formats.split(',').map(
@@ -14,7 +14,7 @@ export class PrismaFormatsMapper {
     return [];
   }
 
-  static toPrisma(formats: Format[]) {
+  static toDatabase(formats: Format[]) {
     return formats
       .filter((format) => format.isLegal)
       .map((format) => format.value)

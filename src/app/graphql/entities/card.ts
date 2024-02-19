@@ -4,16 +4,16 @@ import { Set } from './set';
 
 @ObjectType()
 export class Card {
-  @Field()
+  @Field(() => String)
   id: string;
 
-  @Field()
+  @Field(() => String)
   name: string;
 
-  @Field()
+  @Field(() => String)
   rarity: string;
 
-  @Field()
+  @Field(() => String)
   type: string;
 
   @Field(() => [String])
@@ -25,7 +25,7 @@ export class Card {
   @Field(() => [String])
   versions: string[];
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   imageUri?: string;
 
   @Field(() => Set)

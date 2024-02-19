@@ -1,22 +1,3 @@
-import { Color } from './color';
-
-interface FaceProps {
-  id: string;
-  imageUri: string;
-  name: string;
-  manaCost: string | null;
-  effectText: string | null;
-  flavorText: string | null;
-  language: string;
-  typeLine: string;
-  setId: string;
-  colors: Color[];
-  faceOfId: string;
-  cmc: number | null;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 export class Face {
   private props: FaceProps;
 
@@ -62,10 +43,6 @@ export class Face {
 
   public get colors() {
     return this.props.colors;
-  }
-
-  public get faceOfId() {
-    return this.props.faceOfId;
   }
 
   public get cmc() {

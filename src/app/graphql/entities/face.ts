@@ -2,18 +2,18 @@ import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class Face {
-  @Field()
+  @Field(() => String)
   id: string;
 
-  @Field()
+  @Field(() => String)
   name: string;
 
-  @Field()
+  @Field(() => String)
   type: string;
 
   @Field(() => [String])
   colors: string[];
 
-  @Field()
+  @Field(() => String)
   imageUri: string;
 }

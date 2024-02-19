@@ -1,5 +1,4 @@
 import { Card } from '~/app/entities/card';
-import { Face } from '~/app/entities/face';
 
 export interface FindByFiltersProps {
   take?: number;
@@ -11,6 +10,4 @@ export interface FindByFiltersProps {
 
 export abstract class CardsRepository {
   abstract findByFilters(data: FindByFiltersProps): Promise<Card[]>;
-  abstract createCards(cards: Card[]): Promise<void>;
-  abstract createFaces(faces: Face[]): Promise<void>;
 }

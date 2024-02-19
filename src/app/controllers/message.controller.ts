@@ -2,7 +2,6 @@ import { Controller, Inject, Logger } from '@nestjs/common';
 import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
 import newRelic from 'newrelic';
 
-import { NewSet } from '../messaging/types/new-set';
 import { MessagingSetMapper } from '../messaging/mappers/messaging-set-mapper';
 import { CreateNewSetAndCardsService } from '../services/create-new-set-and-cards.service';
 import { GetAllSetsService } from '../services/get-all-sets.service';
@@ -30,7 +29,7 @@ export class MessageController {
   }
 
   @MessagePattern('new-set')
-  async newSet(@Payload() data: NewSet) {
+  async newSet(@Payload() data: NewSetProps) {
     newRelic.setTransactionName(`new-set: ${data.code}-${data.id}`);
     await this.createNewSetAndCardsService.execute(
       MessagingSetMapper.toDomain(data),

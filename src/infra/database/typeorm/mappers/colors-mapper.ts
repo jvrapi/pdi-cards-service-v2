@@ -1,6 +1,6 @@
 import { Color, ColorName } from '~/app/entities/color';
 
-export class PrismaColorsMapper {
+export class ColorsMapper {
   static toDomain(color: string | null): Color[] {
     if (color) {
       return color
