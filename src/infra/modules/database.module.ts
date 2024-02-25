@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CardsRepository } from '~/app/repositories/cards.repository';
-import { SetsRepository } from '~/app/repositories/sets-repository';
+import { SetsRepository } from '~/app/repositories/sets.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from '../database/typeorm/config/database-config.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';

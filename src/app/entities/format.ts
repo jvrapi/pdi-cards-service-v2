@@ -1,4 +1,6 @@
-export class Format {
+import { FormatProps } from '~/types/format';
+
+export class Format implements FormatProps {
   private readonly props: FormatProps;
 
   constructor(props: FormatProps) {

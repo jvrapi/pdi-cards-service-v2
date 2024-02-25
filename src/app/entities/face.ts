@@ -1,4 +1,6 @@
-export class Face {
+import { FaceProps } from '~/types/card';
+
+export class Face implements FaceProps {
   private props: FaceProps;
 
   constructor(props: FaceProps) {
@@ -39,10 +41,6 @@ export class Face {
 
   public get setId() {
     return this.props.setId;
-  }
-
-  public get colors() {
-    return this.props.colors;
   }
 
   public get cmc() {

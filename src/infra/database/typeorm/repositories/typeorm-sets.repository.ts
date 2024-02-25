@@ -1,10 +1,10 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Set } from '~/app/entities/set';
-import { SetsRepository } from '~/app/repositories/sets-repository';
 
 import { Repository } from 'typeorm';
 import { Set as SetEntity } from '../entities/set.entity';
 import { SetsMapper } from '../mappers/sets-mapper';
+import { SetsRepository } from '~/app/repositories/sets.repository';
 
 export class TypeOrmSetsRepository implements SetsRepository {
   constructor(

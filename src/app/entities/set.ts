@@ -1,6 +1,7 @@
+import { SetProps } from '~/types/set';
 import { Card } from './card';
 
-export class Set {
+export class Set implements SetProps {
   private readonly props: SetProps;
   private _cards: Card[];
 

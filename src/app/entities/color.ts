@@ -1,4 +1,6 @@
-export class Color {
+import { ColorProps } from '~/types/color';
+
+export class Color implements ColorProps {
   private readonly props: ColorProps;
 
   constructor(props: ColorProps) {

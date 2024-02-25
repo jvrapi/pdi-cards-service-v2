@@ -3,6 +3,7 @@ import { Face } from './face';
 import { Color } from './color';
 import { Format } from './format';
 import { Version } from './version';
+import { CardProps } from '~/types/card';
 
 export class Card {
   private readonly props: CardProps;

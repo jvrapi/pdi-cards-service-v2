@@ -1,12 +1,10 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Like, Repository } from 'typeorm';
 import { Card } from '~/app/entities/card';
-import {
-  CardsRepository,
-  FindByFiltersProps,
-} from '~/app/repositories/cards.repository';
+import { CardsRepository } from '~/app/repositories/cards.repository';
 import { Card as CardEntity } from '../entities/card.entity';
 import { CardsMapper } from '../mappers/cards-mapper';
+import { FindByFiltersProps } from '~/types/card';
 export class TypeOrmCardsRepository implements CardsRepository {
   constructor(
     @InjectRepository(CardEntity)

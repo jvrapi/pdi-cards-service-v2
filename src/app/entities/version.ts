@@ -1,4 +1,6 @@
-export class Version {
+import { VersionProps } from '~/types/version';
+
+export class Version implements VersionProps {
   private props: VersionProps;
 
   constructor(props: VersionProps) {
