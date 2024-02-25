@@ -28,9 +28,4 @@ export class TypeOrmCardsRepository implements CardsRepository {
 
     return cards.map(CardsMapper.toDomain);
   }
-
-  async createFaces(data: NewCardFaceProps[]): Promise<void> {
-    const cards = data.map(this.cardRepository.create);
-    await this.cardRepository.save(cards);
-  }
 }

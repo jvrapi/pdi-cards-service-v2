@@ -24,9 +24,4 @@ export class TypeOrmSetsRepository implements SetsRepository {
 
     return set ? SetsMapper.toDomain(set) : null;
   }
-
-  async create(set: CreateSetParams): Promise<void> {
-    const newSet = this.setRepository.create(set);
-    await this.setRepository.save(newSet);
-  }
 }
